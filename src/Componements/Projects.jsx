@@ -7,7 +7,7 @@ function Projects({}){
     let projects = [{number:0,title: 'Default1', desc: 'seewey description' },
                     {number:1,title: 'Default2', desc: 'seewey description' },
                     {number:2,title: 'Default3', desc: 'seewey description' },]
-    const [Active, setActive] = useState(projects[0])
+    const [Active, setActive] = useState({number:-1,title: 'Choose a project', desc: '' })
     let L = [3,7,3]
 
     let a = Array.from(Array(L[0]).keys())
@@ -16,38 +16,63 @@ function Projects({}){
     let Dist1 = (510-((L[0]-1)*80))/2
     let Dist2 = (510-((L[1]-1)*80))/2
     let Dist3 = (510-((L[2]-1)*80))/2
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
+
     function animate(I){
         let dots2 = document.querySelectorAll('.layer2dot')
         dots2.forEach((dot,i) => {
             //go back  to base position
-            dot.setAttribute('r',3)
-            dot.style.transform = 'translate(0px,0px)'
+            dot.setAttribute('r',15)
             dot.style.transition = '0s'
+            dot.style.transform = 'translate(0px,0px)'
+            let X = I*80;
+            let Y = 0;
+            dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+            let duration = 400;
+            //L1 animation
+            window.setTimeout(function () {
+                dot.setAttribute('r',3)
+                dot.style.transition = (duration+100)+'ms'
+                Y += 13;
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+            }, 0);
 
+            //from top L1 to L2
+            window.setTimeout(function () {
+                X += (Dist2 + 80*i) - (Dist1 + (80 * I))
+                Y += 60
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+            }, (1*duration));
+            window.setTimeout(function () {
+                Y += 12;
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+                dot.setAttribute('r',15)
+            }, (2*duration));
+            window.setTimeout(function () {
+                dot.setAttribute('r',3)
+                Y += 13;
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+            }, (3*duration));
 
             //from top L2 to L3
-            let x = (Dist3 + 80*I) - (Dist2 + (80 * i))
-            let y = 60
             window.setTimeout(function () {
-                dot.style.transition = '0.7s'
-                dot.style.transform = 'translate('+x+'px,'+y+'px)'
-            }, 1);
-            //from top L3 to center L3
+                X += (Dist3 + 80*I) - (Dist2 + (80 * i))
+                Y += 60
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
+            }, (4*duration));
             window.setTimeout(function () {
-                dot.style.transform = 'translate('+x+'px,'+(y+13)+'px)'
-            }, 701);
-            //bigger size
-            window.setTimeout(function () {
+                Y += 12;
+                dot.style.transform = 'translate('+X+'px,'+Y+'px)'
                 dot.setAttribute('r',15)
-            }, 1001);
+                
+            }, (5*duration));
+            window.setTimeout(function () {
+                setActive(projects[I])
+            }   , (6*duration));
         })
     }
 
     return(
-        <div className=" w-full relative">
+        <div className=" w-full relative" id='Projects'>
 
 
             <div className='absolute w-full flex items-center flex-col'>
@@ -65,9 +90,8 @@ function Projects({}){
                     {/* First layer */
                         a.map((i) => {
                             let I = i
-                            let c = (Active["number"]==i)?" active":"";
                             return(
-                                <circle key={'a'+i} cx={Dist1 + (80 * i)} cy="15" r="15" fill='#02C8FF' className={"hover:fill-white"+c} onClick={()=>{setActive(projects[I]),animate(I)}}/>
+                                <circle className='cursor-pointer ' key={'a'+i} cx={Dist1 + (80 * i)} cy="15" r="15" fill='#02C8FF' onClick={()=>{animate(I)}}/>
                             )
                         })
                     }
@@ -101,7 +125,7 @@ function Projects({}){
                     {/*dots*/
                         b.map((i) => {
                             return(
-                                <circle className='layer2dot relative' key={'bdot'+i} cx={Dist1} cy="15" r="15" fill='white'/>
+                                <circle className='layer2dot relative' key={'bdot'+i} cx={Dist1} cy="15" r="0" fill='white'/>
                             )
                         })
                     }
@@ -116,7 +140,6 @@ function Projects({}){
                 </div>
 
             </div>
-
 
             <div className="bgpics absulute w-full flex justify-start items-center pb-20">
                 <div className="bgpic1 h-full flex items-center"> <img className='' src={dots} alt=""  /> </div>

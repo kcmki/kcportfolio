@@ -2,7 +2,10 @@
 import './App.css'
 import Header from './Componements/Header.jsx'
 import Home from './Componements/Home.jsx'
-import Projects from './Componements/Projects'
+import Projects from './Componements/Projects.jsx'
+import Timeline from './Componements/Timeline.jsx'
+import Footer from './Componements/Footer.jsx'
+
 function App() {
 
   return (
@@ -10,6 +13,8 @@ function App() {
       <Header />
       <Home />
       <Projects />
+      <Timeline />
+      <Footer />
     </div>
   )
 }

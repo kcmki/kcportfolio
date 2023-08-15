@@ -20,5 +20,23 @@ border: 4px solid transparent;
 background: var(--blue); 
 }
 .active{
-    fill: white;
+    /* fill: white; */
+}
+@font-face {
+    font-family: aldo;
+    src: url(assets/AldotheApache.ttf);
+}
+.logotitle{
+    font-family: aldo;
+}
+.headerB .line{
+    width: 0px;
+    height: 3px;
+    transition: 0.2s;
+}
+.headerB:hover .line {
+    width: 30px;
+    height: 3px;
+    background-color: var(--blue);
+    transition: 0.2s ease-in-out;
 }
