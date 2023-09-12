@@ -16,8 +16,10 @@ function Projects({}){
     let Dist1 = (510-((L[0]-1)*80))/2
     let Dist2 = (510-((L[1]-1)*80))/2
     let Dist3 = (510-((L[2]-1)*80))/2
-
+    let running = false
     function animate(I){
+        if(running){return}
+        running = true
         let dots2 = document.querySelectorAll('.layer2dot')
         dots2.forEach((dot,i) => {
             //go back  to base position
@@ -67,8 +69,10 @@ function Projects({}){
             }, (5*duration));
             window.setTimeout(function () {
                 setActive(projects[I])
-            }   , (6*duration));
+            } , (6*duration));
         })
+
+        
     }
 
     return(

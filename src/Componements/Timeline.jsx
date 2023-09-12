@@ -45,13 +45,8 @@ function Left({item}){
     return(
         
         <div className="flex flex-row h-min w-full relative overflow-visible items-center z-[1]">
-            <div className="info bg-kc-blue w-full flex  m-4 ml-24 mr-6 rounded-xl">
-                <div className="img h-auto overflow-hidden w-2/5 bg-black rounded-bl-lg rounded-tl-lg"><img src="" alt="img"></img></div>
-                <div className="text w-3/5 p-4 ">
-                    <div className="title text-xl font-bold">{item.title}</div>
-                    <div className="desc">{item.desc}</div>
-                </div>
-            </div>
+            
+            <Cardtext item={item}/>
 
             <div className="h-full flex justify-center items-center translate-x-[20px]" >
                 <div className="bg-black-500 w-10 h-10 z-10 bg-kc-blue flex justify-center items-center rounded-full relative">
@@ -76,15 +71,21 @@ function Right({item}){
                 </div>    
             </div> 
 
-            <div className="info bg-kc-blue w-full flex  m-4 mr-24 ml-6 rounded-xl">
-                <div className="text w-3/5 p-4">
-                    <div className="title text-xl font-bold">{item.title}</div>
-                    <div className="desc">{item.desc}</div>
-                </div>
-                <div className="img h-auto overflow-hidden w-2/5 bg-black rounded-br-lg rounded-tr-lg"><img src="" alt="img"></img></div>
+            <Cardtext item={item}/>
+
+        </div>
+    )
+}
+
+function Cardtext({item}){
+    console.log(item)
+    return(
+        <div className="info bg-kc-blue w-full flex  m-4 mr-24 ml-6 rounded-xl">
+            <div className="text w-3/5 p-4">
+                <div className="title text-xl font-bold">{item.title}</div>
+                <div className="desc">{item.desc}</div>
             </div>
-
-
+            <div className="img h-auto overflow-hidden w-2/5 bg-black rounded-br-lg rounded-tr-lg"><img src={item.img} alt="img"></img></div>
         </div>
     )
 }
