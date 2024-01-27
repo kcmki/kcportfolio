@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Home />
       <Projects />
-      <Timeline />
+      {/*<Timeline />*/}
       <Footer />
     </div>
   )

@@ -42,7 +42,7 @@ function Nav({}) {
 export function Contact({}) {
     return(
         <div className='h-full flex justify-center items-center w-1/6' >
-            <a href='mailto:mekkimohe@gmail.com' className='text-center text-white hover:text-white flex w-3/5 h-3/5 bg-kc-blue flex justify-center items-center font-bold text-xl rounded-lg p-0 shadow-[0px_0px_8px_0px_#02C8FF]'>
+            <a target="_blank" href='mailto:kcmki.dev@gmail.com' className='text-center text-white hover:text-white flex w-3/5 h-3/5 bg-kc-blue flex justify-center items-center font-bold text-xl rounded-lg p-0 shadow-[0px_0px_8px_0px_#02C8FF]'>
                 <div className="h-fit p-0 m-0">Contact me</div>
             </a>
         </div>

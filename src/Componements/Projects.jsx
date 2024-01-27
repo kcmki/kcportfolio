@@ -1,21 +1,31 @@
 
 import dots from'../assets/dot.png';
 
+import swordmaker from'../assets/swordmaker.png';
+import space from'../assets/space.png';
+import kickz from'../assets/kickz.png';
+import carcare from'../assets/carcare.png';
+import projectmanager from'../assets/projectmanager.png';
+
 import { useState } from 'react';
 
 function Projects({}){
-    let projects = [{number:0,title: 'Default1', desc: 'seewey description' },
-                    {number:1,title: 'Default2', desc: 'seewey description' },
-                    {number:2,title: 'Default3', desc: 'seewey description' },]
+    let projects = [{number:0,title: 'SwordMaker', desc: 'A diffusion model generating 16x16 minecraft sword textures', link:'https://kcswordmaker.streamlit.app/',image:swordmaker},
+                    {number:1,title: 'L\'espace', desc: 'Showcase website presenting space', link:'https://kcmki.github.io/Space/',image:space},
+                    {number:2,title: 'Kickz', desc: 'A landing page for a sneaker store, crafted with React and enhanced by subtle yet effective animations.' , link:'https://kcmki.github.io/Kickz/',image:kickz},
+                    {number:3,title: 'CarCare', desc: 'Landing page for a car company showcasing its services, essential links, and visually engaging images.',link:'https://kcmki.github.io/CarCare/',image:carcare },
+                    {number:4,title: 'Project Manager', desc: 'A React-based app designed for dynamic project and task management, featuring API calls for seamless integration. The application includes a comprehensive task list and efficient task management capabilities tailored for each project. ' ,link:'https://kcmki.github.io/Project-manager/',image:projectmanager}
+                ]
+
     const [Active, setActive] = useState({number:-1,title: 'Choose a project', desc: '' })
-    let L = [3,7,3]
+    let L = [5,7]
 
     let a = Array.from(Array(L[0]).keys())
     let b = Array.from(Array(L[1]).keys())
-    let c = Array.from(Array(L[2]).keys())
+    let c = Array.from(Array(L[0]).keys())
     let Dist1 = (510-((L[0]-1)*80))/2
     let Dist2 = (510-((L[1]-1)*80))/2
-    let Dist3 = (510-((L[2]-1)*80))/2
+    let Dist3 = (510-((L[0]-1)*80))/2
     let running = false
     function animate(I){
         if(running){return}
@@ -140,7 +150,9 @@ function Projects({}){
                         <div className="title font-bold text-3xl text-center text-title-gray font-inter py-10">{Active['title']}</div>
                         <div className="desc text-lg text-text-gray">{Active['desc']}</div>
                     </div>
-                    <div className="show h-[500px] w-4/6 m-5 rounded-3xl bg-white"></div>
+                    <a href={Active["link"]} target='_blank' className="show h-[500px] w-4/6 m-5 rounded-3xl flex items-center jusitify-center">
+                        <img className='w-100 h-auto rounded-xl' src={Active["image"]} alt="" srcset="" />
+                    </a>
                 </div>
 
             </div>
